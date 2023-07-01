@@ -1,0 +1,169 @@
+%-------------------------------------------------------------------------------
+% Introducción.
+%-------------------------------------------------------------------------------
+
+\section*{Introducción}
+
+LARALA LA INTRODUCC
+%%% TODO: FALTA COMPLETAR LA INTRODUCCIÓN ---------------------------------------------
+
+\newpage
+
+\section{Introducción}
+
+LARALA LA INTRODUCC
+%%% TODO: FALTA COMPLETAR LA INTRODUCCIÓN ---------------------------------------------
+
+\section*{Introducción}
+
+LARALA LA INTRODUCC
+%%% TODO: FALTA COMPLETAR LA INTRODUCCIÓN ---------------------------------------------
+
+\newpage
+
+%-------------------------------------------------------------------------------
+% Convergencia uniforme y puntual.
+%-------------------------------------------------------------------------------
+
+\section{Convergencia uniforme y puntual}
+
+\begin{ndef}[Convergencia punto a punto] Diremos que una sucesión de funciones $fn$ \textit{converge puntualmente} a una función $f\in \mathcal{F}(A,\mathbb{R}^M)$ si $\forall x \in A, \ \{f_n(x)\} \rightarrow f(x)$. Esto es, si se verifica lo siguiente:
+  \[
+    \forall x\in A\ \forall \epsilon > 0\ \exists n_0 \in \mathbb{N}: n \ge n_0 \Rightarrow |f_n(x)-f(x)| < \epsilon
+  \]
+  En ocasiones denotaremos la convergencia puntual como $fn \xrightarrow {c.p} f$.
+\end{ndef}
+
+
+\begin{nota}
+  Aunque ambas definiciones son muy parecidas, hay una diferencia clave. En la convergencia puntual, el valor de $n_0$ puede depender tanto de $\epsilon$ como de $x$. Sin embargo, en la convergencia uniforme, exigimos que $n_0$ sea válido para cualquier $x$.
+\end{nota}
+
+\begin{nprop} \label{unif_puntual}
+  Si $fn\to f \text{ uniformemente} \implies fn \to f \text{ puntualmente}$.
+\end{nprop}
+
+  La necesidad del concepto de convergencia uniforme se aprecia bien
+  en el siguiente teorema, junto con los ejemplos que aparecen a
+  continuación. Normalmente, las funciones con las que trabajemos
+  serán continuas. El conjunto de las funciones continuas entre un
+  conjunto $A$ y $R^M$ se denota como $\mathcal{C}(A,R^M)$.
+
+\begin{nth}
+  \label{2}
+  Sea $A$ un subconjunto no vacío de  $R^N$ y $f_n \in \mathcal{C} (A,R^M) \forall n\in N$. Entonces se tiene que:
+  \[
+    fn \to f \text{ uniformemente } \implies f \text{ es continua}
+  \]
+\end{nth}
+
+\begin{proof}
+  Como $fn \to f$ uniformemente, por definición podemos tomar un número $\epsilon > 0$ cualquiera de forma que:
+  \[ \exists K>0: 
+  n 
+  \geq K 
+  \implies 
+  |f_n(y)-f(y)|<
+  \dfrac{\epsilon}{3}\ 
+  \forall y\in A \]
+    Es obvio entonces que si tomamos un punto $a \in A$, $f_n(a)-f(a)<\dfrac{\epsilon}{3}$. Por otro lado, dado que $f_n$ es una función continua para cada $n \in N$, por la definición de continuidad de una función podemos afirmar que:
+    $$\exists \delta > 0 \text{ tal que si } |x-a| < \delta \text{ para } x \in A \text{ entonces } f_n(x)-f_n(a) < \dfrac{\epsilon}{3}$$
+    De igual forma que con $a$, por la convergencia uniforme podemos afirmar que dado $x \in A$, $f_n(x)-f(x)<\dfrac{\epsilon}{3}$.
+    Llegados a este punto, si unimos las desigualdades obtenidas hasta ahora podemos afirmar que:
+    $$ f(x)-f(a) \le f(x)-f_n(x) + f_n(x)-f_n(a)+f_n(a)-f(a) < \epsilon $$
+  Por tanto, hemos probado que dado $\epsilon > 0$,
+\end{proof}
+
+\begin{ejemplo} \label{ex:sucesion1}
+  \[
+    f_n : [0,1] \to R,\ f_n(x) = \begin{cases}
+    -nx+1 & \text{si }  0\le x < \dfrac{1}{n}\\
+    0     & \text{si }  x\ge \dfrac{1}{n}
+    \end{cases}
+  \]
+\end{ejemplo}
+
+\begin{ejemplo}
+  \[
+    f_n : [0,1] \to R,\ f_n(x) = x^n
+  \]
+\end{ejemplo}
+
+\begin{ejemplo} \label{ex:sucesion3}
+  \[
+    f_n : [0,1] \to R,\ f_n(x) = \dfrac{sen(nx)}{n}
+  \]
+\end{ejemplo}
+
+Vamos a estudiar la convergencia puntual de la sucesión del ejemplo Ref{ex:sucesion1}:
+
+Primero, fijamos $x\in (0,1]$. Entonces, existe $n\in N$ tal que $x \ge \dfrac{1}{n}$, luego $f_m(x) = 0$ para cada $m\ge n$. Por otra parte, $f_n(0) = 1\ \forall n\in N$. Concluimos que
+
+\[
+  fn\to f = \begin{cases}
+    1 & \text{ si } x=0\\
+    0 & \text{ en otro caso}
+  \end{cases}
+\]
+
+Observamos que la convergencia puntual no preserva la continuidad de las funciones. Esto implicaría que, con esta definición de convergencia, el espacio de funciones continuas en un conjunto no sería cerrado. Además, podemos comprobar que $fn$ no converge uniformemente a $f$, pues en caso de hacerlo $f$ debería ser continua, por el \textit{Teorema Ref{2}}.
+
+Ahora estudiemos la convergencia uniforme del ejemplo Ref{ex:sucesion3}:
+
+\[
+  \forall\epsilon>0\ \exists K>\dfrac{1}{\epsilon}:\ \ n\ge K \implies \dfrac{sen(nx)}{n} \le \dfrac{1}{n} \le \dfrac{1}{K} < \epsilon
+\]
+
+Vemos que converge uniformemente a cero. Lo importante para esta demostración, y lo que lo será en la mayoría de los casos de convergencia uniforme, es que podemos encontrar un $\epsilon_n$ (en este caso $\frac{1}{n}$), que no dependa de $x$, tal que $f_n(x)-f(x) < \epsilon_n$.
+
+\begin{nprop}[Criterio de Cauchy]
+  Sea $A \subseteq \mathbb{R}^N$, y sean $f_n: A \longrightarrow \mathbb{R}^M \ \forall n \in \mathbb{N}$. Entonces: $$fn \xrightarrow {c.u} f \iff \forall \epsilon > 0\ \exists n_0 \in \mathbb{N}:\ m,n \ge n_0 Rightarrow |f_n(x) - f_m(x)| < \epsilon\ \ \forall x \in A$$
+\end{nprop}
+
+  
+\begin{nth}[de Dini]
+  \label{1}
+  Sea $A\subseteq R^N$ compacto, y funciones $f_k : A \to \mathbb{R}$ continuas, verificando:
+
+  \begin{enumerate}
+  \item $f_k \geq 0$
+  \item $f_k \geq f_{k+1}$ (la sucesión $\{f_k\}$ es monótona decreciente).
+  \item $f_k \to 0\ c.p.$
+  \end{enumerate}
+
+  Entonces, $\{f_k\} \to 0$ uniformemente en $A$.
+\end{nth}
+
+  \begin{proof}
+    Se puede consultar en el ejercicio Ref{dini}.
+  \end{proof}
+
+% --------------------------------------------------------------------------------
+% El espacio de funciones continuas.
+% --------------------------------------------------------------------------------
+
+\subsection{El espacio de funciones continuas}
+
+Ya sabemos que dado $A\subseteq \mathbb{R}^N$ compacto, el espacio $(\mathcal{C}(A,\mathbb{R}^M), \|\cdot\|_{\infty})$
+es un espacio normado, donde la norma del máximo o \textit{norma uniforme} se define así:
+
+
+\begin{nprop} En el espacio $\mathcal{C}(A,\mathbb{R}^M)$, con $A$ compacto, la convergencia de sucesiones equivale a la convergencia uniforme, esto es: $$fn Rightarrow f\ en\ \mathcal{C}(A,\mathbb{R}^M) \iff fn \xrightarrow {c.u} f$$
+\end{nprop}
+
+  
+\begin{ncor}
+  Sea $f_n\in \mathcal{C}^1(a,b) \ \forall n \in \mathbb{N}$. Supongamos que $\exists \alpha \in (a,b)$ tal que $ \{f_n(\alpha)\}$ es convergente, y supongamos también que $\{f_n'\} \xrightarrow{c.u.} g \in \mathcal C((a,b))$ en $(a,b)$. Entonces, $\exists f: (a,b) \to \mathbb{R}$ tal que $fn \to f$ uniformemente. Además, $f \in \mathcal{C}^1(a,b)$, y  $f' = g$.
+\end{ncor}
+
+\begin{lema} \label{conjunto_denso}
+  Todo subconjunto $A$ (no tiene por qué ser compacto) de
+  $\mathbb{R}^N$ tiene un subconjunto numerable denso en \'el. Esto
+  es, $\exists C \subseteq A$ numerable cumpliendo
+  $A \subseteq \overline{C}$.
+\end{lema}
+
+Como conclusión de este capítulo, presentamos el siguiente corolario, que nos sirve para caracterizar los conjuntos compactos.
+
+\begin{ncor}[Caracterización de compactos] Sea $B \subseteq \mathcal{C}(A,\mathbb{R}^M)$. Entonces: $$B\ \text{es compacto} \iff B \ \text{es cerrado, acotado y equicontinuo}$$
+\end{ncor}
